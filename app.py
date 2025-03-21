@@ -1,20 +1,20 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, flash
 import facebook
 import logging
 import os
+import tkinter as tk
+from tkinter import messagebox
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'supersecretkey')
 
 # Set up logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
 class FacebookAgent:
-    def __init__(self, access_token):
-        self.graph = facebook.GraphAPI(access_token)
-        self.keyword_list = set()
-
-  class FacebookAgent:
     def __init__(self, access_token):
         self.graph = facebook.GraphAPI(access_token)
         self.keyword_list = set()
@@ -203,10 +203,6 @@ class FacebookAgentGUI:
         self.root.mainloop()
 
 
-if __name__ == "__main__":
-    app = FacebookAgentGUI()
-    app.run()
-    
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
